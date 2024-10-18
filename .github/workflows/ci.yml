@@ -27,23 +27,24 @@ jobs:
 #       각 단계에서는 실행할 명령이나 액션을 정의할 수 있다.
 
 
-steps:
+
 # 외부 액션이나 Github에서 제공하는 공식 액션을 가져와서 실행한다.
 #actions/checkout : Github 레포지토리 소스코드를 워크플로우 실행환경에 다운로드 하는 역할을 한다.
 #actions/setup-java: java 환경을 설정하는 액션이다.
 #이 액션은 java 개발환경을 설정한다.
 #distribution : corretto
 #AWS에서 제공하는 자바 패포판
-  - uses: actions/checkout@v3
+  steps:
+    - uses: actions/checkout@v3
 
-  - uses: actions/setup-java@v3
-    with:
+    - uses: actions/setup-java@v3
+      with:
         distribution: 'corretoo'
         java-version: '17'
 
-        
-  - name: Grant execute permission for gradlew
-    run: chmod +x gradlew
+          
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
 
-  - name: Build with Gradle
-    run: ./gradlew clean build
+    - name: Build with Gradle
+      run: ./gradlew clean build
